@@ -1,0 +1,41 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/db?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 50
+      max-lifetime: 600000
+    tomcat:
+      test-on-borrow: true
+      validation-query: SELECT  1
+  flyway:
+    enabled: false
+  redis:
+    cluster:
+      nodes: 127.0.0.1:7001,127.0.0.1:7002
+    password:
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    show-sql: true
+    generate-ddl: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        generate_statistics: false
+        jdbc:
+          batch_size: 100
+        order_inserts: true
+debug: true
+
